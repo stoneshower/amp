@@ -1,0 +1,99 @@
+<!-- INFO: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+<!-- INFO: https://www.suzukikenichi.com/blog/script-for-amp-ad-is-required/ -->
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">amp-ad</p>
+      <ul class="check">
+        <li>ライブラリ - 要 (不要だったが推奨)</li><!-- https://www.ampproject.org/docs/reference/components/amp-ad -->
+      </ul>
+      <p class="descr">amp-adは、AMPのページ上で広告を表示できる専用タグです。</p>
+      <p class="descr">Position Fixed(amp lightboxを除く)では使用できない。</p>
+      <p class="descr">HTTPS対応のAdのみ表示できる</p>
+      <p class="descr"><code>placeholder</code></p>
+      <p class="descr"><code>fallback</code></p>
+      <p><a href="https://www.ampproject.org/docs/reference/components/amp-ad#running-ads-from-a-custom-domain">Running ads from a custom domain</a></p>
+      <p class="descr">Ad Network List => <a href="https://www.ampproject.org/docs/reference/components/amp-ad">https://www.ampproject.org/docs/reference/components/amp-ad</a>
+      <p class="descr">Ads are loaded using a the tag given the type of the ad network and name value pairs of configuration. This is an example for the A9 network:</p><!-- https://github.com/ampproject/amphtml/blob/master/ads/a9.md -->
+      <div>
+<pre>
+&lt;amp-ad
+    width="300"
+    height="250"
+    layout="responsive"
+    type="a9"
+    data-aax_size="300x250"
+    data-aax_pubname="test123"
+    data-aax_src="302"&gt;
+    &lt;div placeholder&gt;ad placeholder!!!&lt;/div&gt;
+    &lt;div fallback&gt;ad fallback!!!&lt;/div&gt;
+&lt;/amp-ad&gt;
+      </pre>
+      </div>
+      <amp-ad
+          width="300"
+          height="250"
+          layout="responsive"
+          type="a9"
+          data-aax_size="300x250"
+          data-aax_pubname="test123"
+          data-aax_src="302">
+          <div placeholder>ad placeholder!!!</div>
+          <div fallback>ad fallback!!!</div>
+      </amp-ad>
+
+      <amp-embed width=100 height=283
+         type=taboola
+         layout=responsive
+         heights="(min-width:1907px) 39%, (min-width:1200px) 46%, (min-width:780px) 64%, (min-width:480px) 98%, (min-width:460px) 167%, 196%"
+         data-publisher="amp-demo"
+         data-mode="thumbnails-a"
+         data-placement="Ads Example"
+         data-article="auto">
+      </amp-embed>
+
+      <amp-embed
+          width="780" height="100"
+          heights="(max-width:645px) 100%, (max-width:845px) 31%, 23%"
+          layout="responsive"
+          type="zergnet"
+          data-zergid="42658">
+      </amp-embed>
+
+      <amp-ad
+          type="yahoo"
+          width="316"
+          height="264"
+          data-sid="954014446"
+          data-site="news"
+          data-sa='{"LREC":"300x250","secure":"true","content":"no_expandable;"}'>
+      </amp-ad>
+
+
+    </div>
+  </body>
+</html>
