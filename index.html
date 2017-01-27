@@ -1,5 +1,7 @@
 <!-- INFO: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
 <!-- INFO: https://nsugimot.github.io/amp/ -->
+<!-- INFO Leaf Node Contents:https://drive.google.com/file/d/0BxvWUiBQ8jznNXhISW4zRFF0eW8/view -->
+<!-- https://iframely.com/docs/amp -->
 <!doctype html>
 <html ⚡><!-- <html amp>でもいい-->
   <head>
@@ -27,9 +29,54 @@
   <body>
     <div class="container">
       <p class="title">What is AMP?</p>
+
+      <p>AMPでデフォルト実装されているカスタムタグは以下の５つ。 </p>
       <ol>
         <li><a href="amp-ad.html">amp-add</a></li>
+        <li><a href="amp-img.html">amp-img</a></li>
+        <li><a href="amp-pixel.html">amp-pixel</a></li>
+        <li><a href="amp-video.html">amp-video</a></li>
+        <li><a href="amp-embed.html">amp-embed</a></li>
       </ol>
+      <p>それ以外のカスタムタグはオプションとしてベット読み込む必要あり。(カスタムタグの読み込み方は単純でscript要素にsrc属性とcustom-element属性を記述)</p>
+      <ol>
+        <li><a href="amp-iframe.html">amp-iframe</a></li>
+        <li><a href="amp-form.html">amp-form</a></li>
+      </ol>
+
+      <br>
+      <p>クローラーにAMPページの存在を知らせるには？</p>
+      <p>AMPページの元となるオリジナルページ(full function)が存在する場合、この<code>head</code>要素内の<code>link</code>にAMPページのパスを指定する。<code>rel</code>には<code>amphtml</code>を指定する。</p>
+      <p><code>&lt;link rel="amphtml" href="AMP PAGEのURL"&gt;</code></p>
+
+      <br>
+      <p>JSON-LDの指定</p>
+      <p>schema.orgのJSON-LDを指定することで、そのページの情報を正確にクローラーに伝えることができます。このJSON-LDは省略してもdevtool上でエラーは出ませんが、<a href="https://seopack.jp/seoblog/20160817-sc/">Search Console</a>(旧: Googleウェブマスターツール)上でエラー扱いとなります。</p>
+<pre>
+&lt;script type="application/ld+json"&gt;
+  {
+    "@content": "http://schema.org",
+    "@type": "NewsArticle",
+    "headline": "SAMPLEのページ",
+    "datePublished": "2017-01-27T12:02:41Z",
+    "image":[
+      "logo.png"
+    ]
+  }
+&lt;/script&gt;</pre>
+      <!-- <script type="application/ld+json">
+        {
+          "@content": "http://schema.org",
+          "@type": "NewsArticle",
+          "headline": "SAMPLEのページ",
+          "datePublished": "2017-01-27T12:02:41Z",
+          "image":[
+            "logo.png"
+          ]
+        }
+      </script> -->
+
+
     </div>
 
     https://www.ampproject.org/docs/reference/components/amp-ad

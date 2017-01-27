@@ -1,0 +1,71 @@
+<!-- INFO: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+<!-- INFO: https://www.suzukikenichi.com/blog/script-for-amp-ad-is-required/ -->
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">amp-img</p>
+      <ul class="check">
+        <li>ライブラリ - 要</li><!-- https://www.ampproject.org/docs/reference/components/amp-ad -->
+      </ul>
+      <p class="descr">HTML5におけるimgタグと使い方は同じです。画像ファイルは、Googleがキャッシュできるものでなければいけません。</p>
+      <p class="descr"><code>src</code><code>width</code><code>height</code>属性の指定が必要。<code>layout</code>属性は必須ではないが、値に<code>layout="responsive"</code>としておくと、アスペクト比を保ったままリサイズできます。</p>
+      <p class="descr"><code>src</code>属性の代わりに<code>srcset</code>の利用も可能。</p>
+      <p class="descr"><code>figure</code>を使うといい(AMPに限ったことはないが)</p>
+      <p class="descr">amp-imgにスタイルシートを適用したい時は、セレクタに<code>amp-img</code>を指定して下さい。</p>
+      <p class="descr"><code>attr</code>属性とは別に<code>attribution</code>属性の設定もできる。著作権の情報など。</p>
+      <div>
+<pre>
+&lt;amp-img
+  src="/dolphin.jpg"
+  width="800"
+  height="600"
+  layout="responsive"&gt;
+&lt;/amp-img&gt;</pre>
+<br>
+<pre>
+&lt;amp-img
+  srcset="/small.jpg 480w, /medium.jpg 768w, /large.jpg 1130w"
+  width="800"
+  height="600"
+  layout="responsive"&gt;
+&lt;/amp-img&gt;</pre>
+<br>
+<pre>
+&lt;figure&gt;
+&lt;amp-img
+    src="/cappuccino.jpg"
+    width="800"
+    height="600"
+    layout="responsive"&gt;
+  &lt;/amp-img&gt;
+  &lt;figcaption&gt;龍馬カプチーノ&lt;/figcaption&gt;
+&lt;/figure&gt;</pre></div>
+
+
+    </div>
+  </body>
+</html>

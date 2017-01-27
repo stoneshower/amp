@@ -1,0 +1,193 @@
+<!-- INFO: http://www.utali.io/entry/2017/01/15/173000 -->
+
+
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  </head>
+  <body>
+      <!-- <amp-iframe width=300 height=300
+         layout="responsive"
+         sandbox="allow-scripts allow-same-origin"
+         src="https://example.com/">
+       <amp-img layout="responsive" src="https://jp.rakuten-static.com/1/bu/corp/global/im/shared/img_logo_en.gif" placeholder></amp-img>
+      </amp-iframe> -->
+    <div class="container">
+      <p class="title">amp-iframe</p>
+      <ul class="check">
+        <li>ライブラリ - 要</li>
+        <li><pre>&lt;script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"&gt;
+</script></pre>を<code>&lt;head&gt;</code>に記述</li><!-- https://www.ampproject.org/docs/reference/components/amp-ad -->
+      </ul>
+      <p class="descr">iframe の代わりに使用する。</p>
+      <p class="descr">AMP iFrame can not appear close to the top of the document (except for iFrames that use image placeholder). Embeds can appear either 600px from the top or after 75% of the initial viewport (when scrolled to the top).<br>AMP iframeはページのトップから600pxもしくはページサイズの75%より下部に配置する。*placeholderを利用することで回避可能。</p>
+      <p class="descr">src は https:// で始まるURLのみ。</p>
+      <ul class="check u-nopadding u-nomargin">
+        <table>
+        <thead>
+            <tr>
+                <th>属性 </th>
+                <th>説明 </th>
+                <th>例 </th>
+                <th>必須か？ </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>width </td>
+                <td>動画の埋め込み枠の幅 </td>
+                <td>560 </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>height </td>
+                <td>動画の埋め込み枠の高さ </td>
+                <td>315 </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>src </td>
+                <td>iframeのURL </td>
+                <td><a href="https://hoge.com/">https://hoge.com/</a> </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>sandbox </td>
+                <td>サンドボックスの設定を変更 </td>
+                <td>allow-scripts </td>
+                <td>× </td>
+            </tr>
+            <tr>
+                <td>resizable </td>
+                <td>設定するとリサイズを許可する </td>
+                <td></td>
+                <td>× </td>
+            </tr>
+            <tr>
+                <td>layout </td>
+                <td>レイアウトを設定 </td>
+                <td>responsive </td>
+                <td>× </td>
+            </tr>
+        </tbody>
+        </table>
+      </ul>
+      <p class="descr">Sandbox<br>
+        <span>セキュリティの観点からamp-iframeは任意のサンドボックス化を実行することが可能です。 デフォルトでは最大限のサンドボックス化がなされています。 amp-iframe内で使用したい機能に応じて適宜権限を与える必要があります。 また、amp-iframe内でオープンされたページにもサンドボックス化の設定が継承されます。</span>
+      </p>
+      <ul class="check u-nopadding u-nomargin">
+        <table>
+        <thead>
+            <tr>
+                <th>値 </th>
+                <th>効果 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>allow-scripts </td>
+                <td>amp-iframe内でJSの実行を許可する</td>
+            </tr>
+            <tr>
+                <td>allow-same-origin</td>
+                <td>amp-iframe内で同一生成元のAjaxを許可する</td>
+            </tr>
+            <tr>
+                <td>allow-popups </td>
+                <td>amp-iframe内でtarget=_blankを設定した場合にポップアップの表示を許可する </td>
+            </tr>
+            <tr>
+                <td>allow-popups-to-escape-sandbox</td>
+                <td>amp-iframe内でtarget=_blankを設定した場合にサンドボックスが適用されないポップアップの表示を許可する(only Chrome)</td>
+            </tr>
+        </tbody>
+        </table>
+      </ul>
+
+      <p class="descr">Placeholder<br>
+        <span>placeholderを設置することでamp-iframeをページの先頭に配置することが可能。amp-iframeタグの内部に配置したタグにplaceholderを追加することでその要素がplaceholderとして設定される。</span>
+      </p>
+
+<!--
+amp-iframeがでは、呼び出し先のページが明示的に親フレームにたいして、メッセージを送信する必要があります。
+
+子ページのonloadリスナに対して以下の関数を実行します。
+window.parent.postMessage({
+  sentinel: 'amp',
+  type: 'embed-ready'
+}, '*');
+-->
+
+<!-- <iframe id="bar" src="http://localhost/amp/iframe.html" scrolling="no" >
+    </iframe> -->
+
+<script>
+window.addEventListener('message', receiveMessage, false);
+function receiveMessage(e){
+  // if(e.origin !== 'http://localhost') return;
+  console.log(e.data);
+}
+//with this you can get object which iframe did postMessage
+</script>
+
+
+      <p class="descr">可能なレイアウト</p>
+      <ul class="check">
+        <li>fill</li>
+        <li>fixed</li>
+        <li>fixed-height</li>
+        <li>nodisplay</li>
+        <li>responsive</li>
+      </ul>
+      <div>
+<pre>
+&lt;amp-iframe width=300 height=300
+    layout="responsive"
+    src="https://example.com/"&gt;
+  &lt;a href="https://example.com/"&gt;Example Domain&lt;/a&gt;
+&lt;/amp-iframe&gt;</pre>
+      </div>
+      <br><br><br><br><br><br><br><br><br>
+      layout: responsive
+      <amp-iframe width="300" height="300"
+        layout="responsive"
+        src="https://example.com">
+        <a href="https://example.com/">Example Domain</a>
+      </amp-iframe>
+
+
+      <amp-iframe width=500 height=281
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        layout="responsive"
+        frameborder="0"
+        src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F18150336&url=https%3A%2F%2Fvimeo.com%2F18150336&image=http%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F117311910_1280.jpg&key=internal&type=text%2Fhtml&schema=vimeo">
+      <amp-img layout="fill" src="https://i.vimeocdn.com/video/117311910_1280.jpg" placeholder></amp-img>
+    </amp-iframe>
+
+
+
+    </div>
+  </body>
+</html>

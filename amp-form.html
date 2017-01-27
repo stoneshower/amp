@@ -1,0 +1,250 @@
+<!-- INFO: http://www.utali.io/entry/2017/01/15/173000 -->
+<!-- INFO: https://yaruzou.net/web/amp-form-available -->
+
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  </head>
+  <body>
+      <!-- <amp-iframe width=300 height=300
+         layout="responsive"
+         sandbox="allow-scripts allow-same-origin"
+         src="https://example.com/">
+       <amp-img layout="responsive" src="https://jp.rakuten-static.com/1/bu/corp/global/im/shared/img_logo_en.gif" placeholder></amp-img>
+      </amp-iframe> -->
+    <div class="container">
+      <p class="title">amp-form</p>
+      <ul class="check">
+        <li>ライブラリ - 要</li>
+        <li><pre>&lt;script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"&gt;
+</script></pre>を<code>&lt;head&gt;</code>に記述</li>
+        <li><code>action</code>にサーバーのエンドポイントを記述。これは<code>GET</code>リクエストしか動かない。また、URLはhttpsでないといけない。</li>
+      </ul>
+
+      <div>Page Reload
+<pre>
+&lt;form method="GET"
+    action="https://ampbyexample.com/components/amp-form/submit-form"
+    target="_top"&gt;
+  &lt;input type="search"
+      class="data-input"
+      placeholder="Search..."
+      name="googlesearch"&gt;
+  &lt;input type="submit"
+      value="OK"
+      class="button button-primary other-input"&gt;
+&lt;/form&gt;</pre>
+      </div>
+      <form method="GET"
+          action="https://ampbyexample.com/components/amp-form/submit-form"
+          target="_top">
+        <input type="search"
+            class="data-input"
+            placeholder="Search..."
+            name="googlesearch">
+        <input type="submit"
+            value="OK"
+            class="button button-primary other-input">
+      </form>
+
+
+      <p class="descr"></p>
+
+      <ul class="check">
+        <li><code>XMLHttpRequest(XHR)</code>経由でフォームを送信する場合、<code>action</code>の代わりに<code>action-xhr</code>属性を使用。</li>
+        <li>カスタムの送信後メッセージを出す場合は、<code>amp-mustache</code>テンプレを使用できる。例えば、サーバーが<code>{"foo": "bar"}</code>を送信するのであれば、mustacheに<code>{{foo}}</code>を使用できる。</li>
+        <li><code>amp-form</code>コンポーネントは、レスポンスによって<code>submit-success</code>属性もしくは<code>submit-error</code>属性要素を表示させる。(これらは<code>form</code>の第一子要素である必要がある)</li>
+      </ul>
+      <div>Page Update
+<pre>
+&lt;form method="post"
+      action-xhr="https://ampbyexample.com/components/amp-form/submit-form-input-text-xhr"
+      target="_top"&gt;
+    &lt;input type="text"
+        class="data-input"
+        name="name"
+        placeholder="Name..."
+        required&gt;
+    &lt;input type="email"
+        class="data-input"
+        name="email"
+        placeholder="Email..."
+        required&gt;
+    &lt;input type="submit"
+        value="Subscribe"
+        class="button button-primary"&gt;
+    &lt;div submit-success&gt;
+      &lt;template type="amp-mustache"&gt;
+        Success! Thanks {{name}} for trying the
+        &lt;code&gt;amp-form&lt;/code&gt; demo! Try to insert the word "error" as a name input in the form to see how
+        &lt;code&gt;amp-form&lt;/code&gt; handles errors.
+      &lt;/template&gt;
+    &lt;/div&gt;
+    &lt;div submit-error&gt;
+      &lt;template type="amp-mustache"&gt;
+        Error! Thanks {{name}} for trying the
+        &lt;code&gt;amp-form&lt;/code&gt; demo with an error response.
+      &lt;/template&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;</pre>
+      </div>
+
+
+    <form method="post"
+      action-xhr="https://ampbyexample.com/components/amp-form/submit-form-input-text-xhr"
+      target="_top">
+    <input type="text"
+        class="data-input"
+        name="name"
+        placeholder="Name..."
+        required>
+    <input type="email"
+        class="data-input"
+        name="email"
+        placeholder="Email..."
+        required>
+    <input type="submit"
+        value="Subscribe"
+        class="button button-primary">
+    <div submit-success>
+      <template type="amp-mustache">
+        Success! Thanks {{name}} for trying the
+        <code>amp-form</code> demo! Try to insert the word "error" as a name input in the form to see how
+        <code>amp-form</code> handles errors.
+      </template>
+    </div>
+    <div submit-error>
+      <template type="amp-mustache">
+        Error! Thanks {{name}} for trying the
+        <code>amp-form</code> demo with an error response.
+      </template>
+    </div>
+  </form>
+
+      <!-- <ul class="check u-nopadding u-nomargin">
+        <table>
+        <thead>
+            <tr>
+                <th>属性 </th>
+                <th>説明 </th>
+                <th>例 </th>
+                <th>必須か？ </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>width </td>
+                <td>動画の埋め込み枠の幅 </td>
+                <td>560 </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>height </td>
+                <td>動画の埋め込み枠の高さ </td>
+                <td>315 </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>src </td>
+                <td>iframeのURL </td>
+                <td><a href="https://hoge.com/">https://hoge.com/</a> </td>
+                <td>○ </td>
+            </tr>
+            <tr>
+                <td>sandbox </td>
+                <td>サンドボックスの設定を変更 </td>
+                <td>allow-scripts </td>
+                <td>× </td>
+            </tr>
+            <tr>
+                <td>resizable </td>
+                <td>設定するとリサイズを許可する </td>
+                <td></td>
+                <td>× </td>
+            </tr>
+            <tr>
+                <td>layout </td>
+                <td>レイアウトを設定 </td>
+                <td>responsive </td>
+                <td>× </td>
+            </tr>
+        </tbody>
+        </table>
+      </ul> -->
+   <!--    <p class="descr">Sandbox<br>
+        <span>セキュリティの観点からamp-iframeは任意のサンドボックス化を実行することが可能です。 デフォルトでは最大限のサンドボックス化がなされています。 amp-iframe内で使用したい機能に応じて適宜権限を与える必要があります。 また、amp-iframe内でオープンされたページにもサンドボックス化の設定が継承されます。</span>
+      </p>
+      <ul class="check u-nopadding u-nomargin">
+        <table>
+        <thead>
+            <tr>
+                <th>値 </th>
+                <th>効果 </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>allow-scripts </td>
+                <td>amp-iframe内でJSの実行を許可する</td>
+            </tr>
+            <tr>
+                <td>allow-same-origin</td>
+                <td>amp-iframe内で同一生成元のAjaxを許可する</td>
+            </tr>
+            <tr>
+                <td>allow-popups </td>
+                <td>amp-iframe内でtarget=_blankを設定した場合にポップアップの表示を許可する </td>
+            </tr>
+            <tr>
+                <td>allow-popups-to-escape-sandbox</td>
+                <td>amp-iframe内でtarget=_blankを設定した場合にサンドボックスが適用されないポップアップの表示を許可する(only Chrome)</td>
+            </tr>
+        </tbody>
+        </table>
+      </ul>
+
+      <p class="descr">Placeholder<br>
+        <span>placeholderを設置することでamp-iframeをページの先頭に配置することが可能。amp-iframeタグの内部に配置したタグにplaceholderを追加することでその要素がplaceholderとして設定される。</span>
+      </p>
+ -->
+<!--
+amp-iframeがでは、呼び出し先のページが明示的に親フレームにたいして、メッセージを送信する必要があります。
+
+子ページのonloadリスナに対して以下の関数を実行します。
+window.parent.postMessage({
+  sentinel: 'amp',
+  type: 'embed-ready'
+}, '*');
+-->
+
+<!-- <iframe id="bar" src="http://localhost/amp/iframe.html" scrolling="no" >
+    </iframe> -->
+
+
+
+
+    </div>
+  </body>
+</html>
