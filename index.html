@@ -4,8 +4,7 @@
 <!-- https://iframely.com/docs/amp -->
 <!doctype html>
 <html ⚡><!-- <html amp>でもいい-->
-  <head>
-    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+  <head> <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
     <title>Sample document</title><!-- second child should be -->
     <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
@@ -76,6 +75,61 @@
           ]
         }
       </script> -->
+
+      <br><br>
+
+      <p class="title">AMP Cacheの仕組み</p><!-- https://developers.google.com/amp/cache/ -->
+      <p>AMP Cacheは<b>公開されているValidated</b>なAMPページをコピーしてそれをキャッシュする。</p>
+      <p>AMP Cacheを利用するためには、AMP URLがAMP Cache URLフォーマットに従っている必要がある。</p>
+      <p>あるユーザーがキャッシュされたコンテンツにアクセスすると、キャッシュがアップデートされ、<b>次</b>アクセスしたユーザーに新しいコンテンツが提供される。(When a user requests an AMP document from the Google AMP Cache, the cache automatically requests updates in order to be able to serve fresh content for the next user once the content has been cached. With this model, updates to AMP documents propagate automatically and quickly; few users will see the non-updated version after your update.)</p>
+      <p>キャッシュ生成に負荷をかけないために、Google AMP Cacheではdocumentは15秒、その他リソースに関しては60秒は最新のファイル後解釈する(今後変更の可能性あり)。</p>
+
+
+      <p>AMP Cache URLは３つのコンポーネントからなる</p>
+      <ol>
+        <li>Content type: 下記のcontent typeに属しない場合は404を返す
+          <ul>
+            <li>AMP HTML document: c</li>
+            <li>image: i</li>
+            <li>resource (such as a font): r</li>
+          </ul>
+        </li>
+        <li>Optional "s": "s"をつけるとコンテンツをTLS (secure HTTPS)からフェッチする。</li>
+        <li>URI: URIはスキームを含まない</li>
+      </ol>
+      <p>例1</p>
+      <p>元のページ:<br>https://example.com/amp_document.html</p>
+      <p>AMP Cache URL:<br>https://cdn.ampproject.org/c/s/example.com/amp_document.html</p>
+
+      <p>例2</p>
+      <p>元のページ:<br>https://example.com/logo.png</p>
+      <p>AMP Cache URL:<br>https://cdn.ampproject.org/i/example.com/logo.png</p>
+
+      <br><br>
+
+      <p class="title">Google AMP Cacheから読み込まれると...</p>
+      <p>AMP Validationがされる</p>
+      <p>読み込みを最適化するために、例えば画像だと<br>
+      - &lt;amp-img&gt;によりmetaデータの削除
+      - 画像を最適化する。GIF, PNG, JPEGからWebPフォーマットへの変換
+      - 画像をリサイズして、<code>srcset</code>属性で読み込む
+      </p>
+      <p>HTTPSかつHTTP/2でデータ送信</p>
+      <p>XSSアタックを防ぐためにHTMLソースをSanitizeする</p>
+      <ul>
+        <li>HTMLコメントは削除</li>
+        <li>タグ等は全て小文字に変換</li>
+        <li>属性は自動的にクヲテーション付与</li>
+        <li>タグ内のwhite spaceは削除</li>
+        <li>OurBoundリンクはGoogle AMP Cache originからのパスになる</li>
+      </ul>
+      <p>Headerで"Cache-Control: no-transform"の非推奨</p>
+
+      <br><br>
+
+      <p class="title">Insert prefetch tags</p>
+      <p>自動的にリソースのタグに<code>prefetch</code>を付与する</p>
+
 
 
     </div>
