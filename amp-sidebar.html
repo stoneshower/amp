@@ -1,0 +1,103 @@
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">amp-sidebar</p>
+      <ul class="check">
+        <li>ライブラリ - 要</li><!-- https://ampbyexample.com/components/amp-sidebar/ -->
+      </ul>
+      <p class="descr">amp-sidebarは、AMPのページ上でナビゲーションやボタンなどを置く目的で使用されます。</p>
+      <p class="descr">ページ内で１つのみ設置可能。</p>
+      <p class="descr"><code>body</code>の第一子要素でないといけない。</p>
+      <p class="descr"><code>layout=display</code>を設定する必要がある。</p>
+      <p class="descr">sidebar内には基本的に、AMPコンポーネントはおくことができない。例外: <code>amp-accordion</code><code>amp-img</code><code>amp-fit-text</code></p>
+      <div>
+<pre>
+&lt;amp-ad
+    width="300"
+    height="250"
+    layout="responsive"
+    type="a9"
+    data-aax_size="300x250"
+    data-aax_pubname="test123"
+    data-aax_src="302"&gt;
+    &lt;div placeholder&gt;ad placeholder!!!&lt;/div&gt;
+    &lt;div fallback&gt;ad fallback!!!&lt;/div&gt;
+&lt;/amp-ad&gt;
+      </pre>
+</div>
+
+      <button on="tap:sidebar.toggle">Toggle Sidebar</button>
+
+      <amp-sidebar
+        id="sidebar"
+        layout="nodisplay"
+        side="right"
+      >
+        <!-- <button on="tap:sidebar.close">Close Sidebar</button> -->
+        <amp-img
+          class="amp-close-image"
+          src="https://ampbyexample.com/img/ic_close_black_18dp_2x.png"
+          width="20"
+          height="20"
+          alt="close sidebar"
+          on="tap:sidebar.close"
+          role="button"
+          tabindex="0"
+        >
+        </amp-img>
+
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>Nav Item1</li>
+          <li>
+            <amp-fit-text
+              width="220"
+              height="20"
+              layout="responsive"
+              max-font-size="24">
+              this is amp-fit-text
+            </amp-fit-text>
+          </li>
+          <li>
+            <amp-img
+              class="amp-sidebar-image"
+              src="https://unsplash.it/458/354"
+              width="200"
+              height="200"
+              alt="an image">
+            </amp-img>
+          </li>
+          <li>Nav Item1</li>
+        </ul>
+      </amp-sidebar>
+
+
+    </div>
+  </body>
+</html>
