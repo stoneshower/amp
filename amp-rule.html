@@ -1,0 +1,59 @@
+<!doctype html>
+<html ⚡><!-- <html amp>でもいい-->
+  <head>
+    <meta charset="utf-8"><!-- first child should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#chrs-->
+    <title>Sample document</title><!-- second child should be -->
+    <link rel="canonical" href="./regular-html-version.html"><!-- should be regulart html url: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#canon -->
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#vprt -->
+    <!-- css should be inside <head> -->
+    <!--#include virtual="./style.html" -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "headline": "Article headline",
+      "image": [
+        "thumbnail1.jpg"
+      ],
+      "datePublished": "2017-01-05T08:00:00+08:00"
+    }
+    </script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script><!-- should be: https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md#scrpt -->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">AMPページには多くのマークアップの制約がある</p>
+      <ul class="check">
+        <li>文書宣言は<code>&lt;!DOCTYPE html&gt;</code>にすること</li>
+        <li><code>html</code>に<code>⚡</code>または<code>amp</code>属性を付けること</li>
+        <li>通常ページの<code>rel="canonical"</code>のlink要素の<code>href</code>はAMPページのURLを指定する</li>
+        <li>AMPページの<code>rel="canonical"</code>のlink要素の<code>href</code>には通常ページのURLを指定する (AMPページのみしか存在しなければ、AMPページを指定)</li>
+        <li><code>head</code>の第一子要素は<code>&lt;meta charset="utf-8"&gt;</code>でないといけない</li>
+        <li><code>head</code>に<code>&lt;meta name="viewport" content="width=device-width,minimum-scale=1"&gt;</code>を含めないといけない</li>
+        <li><code>head</code>にAMP JSを読み込ませる必要がある。AMP JSはAMPの核となる部分で、AMP HTMLのコードを解釈し、リソースの負荷を管理しつつAMPの各要素を非同期に高速レンダリングするJavascriptライブラリ。<code>&lt;script async src="https://cdn.ampproject.org/v0.js"&gt;</script></code>。大きな特徴は外部リソースの読み込みを完全に非同期にする。これによりページ内の要素がレンダリング処理をブロックすることはなくなる。</li>
+        <li><code>&lt;style amp-boilerplate&gt;</code>のソースを読み込ませる必要がある</li>
+        <li><a href="https://developers.google.com/search/docs/data-types/articles">構造化データの指定</a>が推奨。
+        構造化データの記述のあるAMPページは、検索結果でカルーセルで表示される。でないと、検索結果としては通常のページと同じように表示されてしまう。SON-LDでもmicrodataでも問題ない。</li>
+        <li>構造化データの記述で<code>image.url</code>の指定が必要。ラスター画像であり、かつ横幅696px以上が必要。</li>
+        <li>構造化データの記述で<code>publisher.logo</code>の指定が必要。AMPロゴには規定がある。
+          <ol>
+            <li>画像のフォーマットは、ラスター画像でないといけない – <code>jpg</code> <code>png</code> <code>gif</code>で <code style="background:red;border:none">svg</code>は使えない</li>
+            <li>アイコンロゴは使えない</li>
+            <li>白もしくは明るい背景色ではっきり見える必要がある</li>
+            <li>60px x 600px もしくは逆のサイズに収まる必要がある</li>
+          </ol>
+        </li>
+        <li><code>og</code>やtwitterの<code>meta</code>を記述することが推奨。</li>
+        <li>カスタムJSの使用は禁止</li>
+        <li>CSSはhtml内に<code>style</code>に<code>amp-custom</code>属性を付けてインラインで記述。&lt;50kb</li>Æ
+      </ul>
+<!--
+      <p class="descr"><code>attr</code>属性とは別に<code>attribution</code>属性の設定もできる。著作権の情報など。</p>
+ -->
+
+    </div>
+  </body>
+</html>
